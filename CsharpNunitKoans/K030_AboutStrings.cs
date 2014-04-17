@@ -16,7 +16,7 @@ namespace TheKoans
 		public void DoubleQuotedStringsAreStrings ()
 		{
 			var str = "Hello, World";
-			Assert.AreEqual (typeof(FILL_ME_IN), str.GetType (), "What did Arial say to Serif? - Sorry, you're not my Type.");
+			Assert.AreEqual (typeof(string), str.GetType (), "What did Arial say to Serif? - Sorry, you're not my Type.");
 		}
 
 		[Test]
@@ -24,14 +24,14 @@ namespace TheKoans
 		{
 			// Note the use of single quotes below.  They're not double quotes, which are definitely used for strings.
 			var str = 'H';
-			Assert.AreEqual (typeof(FILL_ME_IN), str.GetType (), "A single tree does not a forest make.");
+			Assert.AreEqual (typeof(string), str.GetType (), "A single tree does not a forest make.");
 		}
 
 		[Test]
 		public void CreateAStringWhichContainsDoubleQuotes ()
 		{
 			var str = "Hello, \"World\"";
-			Assert.AreEqual (FILL_ME_IN, str.Length, "If the length is wrong and you're trapped, consider ways to escape this...");
+			Assert.AreEqual (14, str.Length, "If the length is wrong and you're trapped, consider ways to escape this...");
 		}
 
 		[Test]
@@ -40,7 +40,7 @@ namespace TheKoans
 			//The @ symbol creates a 'verbatim string literal'. 
 			//Here's one thing you can do with it:
 			var str = @"Hello, ""World""";
-			Assert.AreEqual (FILL_ME_IN, str.Length, "So many quotes, so few characters...");
+			Assert.AreEqual (14, str.Length, "So many quotes, so few characters...");
 		}
 
 		[Test]
@@ -48,7 +48,7 @@ namespace TheKoans
 		{
 			var strA = @"Verbatim Strings can handle both ' and "" characters (when escaped)";
 			var strB = "Verbatim Strings can handle both ' and \" characters (when escaped)";
-			Assert.AreEqual (FILL_ME_IN, strA.Equals (strB), "You've been told three times what Verbatim Strings can handle single and double quotes.. well, I guess this makes it four.");
+			Assert.AreEqual (true, strA.Equals (strB), "You've been told three times what Verbatim Strings can handle single and double quotes.. well, I guess this makes it four.");
 		}
 
 		[Test]
@@ -60,10 +60,10 @@ namespace TheKoans
 			var verbatimString = @"I
 am a
 broken line";
-			Assert.AreEqual (FILL_ME_IN, verbatimString.Length, "Is a newline one or two characters?");
+			Assert.AreEqual (18, verbatimString.Length, "Is a newline one or two characters?");
 			//Tip: What you create for the literal string will have to 
 			//escape the newline characters.
-			var literalString = FILL_ME_IN;
+			var literalString = "I am a broken line";
 			Assert.AreEqual (literalString, verbatimString, "It wouldn't be cheating if you looked down.  No, not at your feet; the method below.");
 		}
 
@@ -74,7 +74,7 @@ broken line";
 			//(\r\n for Windows, \n for Linux) you shouldn't just type in
 			//the hardcoded escape sequence. A much better way would be to
 			//use a property from the Environment class; change the line below
-			var environmentNewLine = FILL_ME_IN;
+			var environmentNewLine = "\n";
             
 			//(We'll handle concatenation and better ways of that in a bit)
 			const string verbatimString = @"I
@@ -88,7 +88,7 @@ broken line";
 		public void PlusWillConcatenateTwoStrings ()
 		{
 			var str = "Hello, " + "World";
-			Assert.AreEqual (FILL_ME_IN, str, "Such a simple phrase, and yet sometimes it takes so much code just to make it happen..");
+			Assert.AreEqual ("Hello, World", str, "Such a simple phrase, and yet sometimes it takes so much code just to make it happen..");
 		}
 
 		[Test]
@@ -97,9 +97,9 @@ broken line";
 			var strA = "Hello, ";
 			var strB = "World";
 			var fullString = strA + strB;
-			Assert.AreEqual (FILL_ME_IN, strA, "The Method name suggests it wouldn't be modified, but only one way to find out");
-			Assert.AreEqual (FILL_ME_IN, strB, "Well, I guess checking both variables is technically an OTHER way...");
-			Assert.AreEqual (FILL_ME_IN, fullString, "I think they purposefully call it concatenation to make it sound as complex as it really is");
+			Assert.AreEqual ("Hello, ", strA, "The Method name suggests it wouldn't be modified, but only one way to find out");
+			Assert.AreEqual ("World", strB, "Well, I guess checking both variables is technically an OTHER way...");
+			Assert.AreEqual ("Hello, World", fullString, "I think they purposefully call it concatenation to make it sound as complex as it really is");
 		}
 
 		[Test]
@@ -108,8 +108,8 @@ broken line";
 			var strA = "Hello, ";
 			var strB = "World";
 			strA += strB;
-			Assert.AreEqual (FILL_ME_IN, strA, "Are you a parrot now?");
-			Assert.AreEqual (FILL_ME_IN, strB, "Why did they stop at world?  Why not 'Universe'?  Why not 'Zoidberg'?");
+			Assert.AreEqual ("Hello, World", strA, "Are you a parrot now?");
+			Assert.AreEqual ("World", strB, "Why did they stop at world?  Why not 'Universe'?  Why not 'Zoidberg'?");
 		}
 
 		[Test]
@@ -126,7 +126,7 @@ broken line";
 			var originalString = strA;
 			const string strB = "World";
 			strA += strB;
-			Assert.AreEqual (FILL_ME_IN, originalString, "'Be yourself. The world worships the original.' - Jacques Cocteau");
+			Assert.AreEqual ("Hello, ", originalString, "'Be yourself. The world worships the original.' - Jacques Cocteau");
 
 			//What just happened? Well, the string concatenation actually
 			//takes strA and strB and creates a *new* string in memory
@@ -160,21 +160,21 @@ broken line";
 		public void LiteralStringsInterpretsEscapeCharacters ()
 		{
 			var str = "\n";
-			Assert.AreEqual (FILL_ME_IN, str.Length, "This is just like 'the sound of one hand clapping'...");
+			Assert.AreEqual (0, str.Length, "This is just like 'the sound of one hand clapping'...");
 		}
 
 		[Test]
 		public void VerbatimStringsDoNotInterpretEscapeCharacters ()
 		{
 			var str = @"\n";
-			Assert.AreEqual (FILL_ME_IN, str.Length, "'True art selects and paraphrases, but seldom gives a verbatim translation.' - Thomas Bailey Aldrich");
+			Assert.AreEqual (0, str.Length, "'True art selects and paraphrases, but seldom gives a verbatim translation.' - Thomas Bailey Aldrich");
 		}
 
 		[Test]
 		public void VerbatimStringsStillDoNotInterpretEscapeCharacters ()
 		{
 			var str = @"\\\";
-			Assert.AreEqual (FILL_ME_IN, str.Length, "Perhaps it would help to look up the definition of verbatim, eh?");
+			Assert.AreEqual (0, str.Length, "Perhaps it would help to look up the definition of verbatim, eh?");
 		}
 
 		[Test]
@@ -182,22 +182,22 @@ broken line";
 		{
 			var world = "World";
 			var str = String.Format ("Hello, {0}", world);
-			Assert.AreEqual (FILL_ME_IN, str, "Usually this is the first thing that programmers do..");
+			Assert.AreEqual ("Hello, World", str, "Usually this is the first thing that programmers do..");
 		}
 
 		[Test]
 		public void AnyExpressionCanBeUsedInFormatString ()
 		{
 			var str = String.Format ("The square root of 9 is {0}", Math.Sqrt (9));
-			Assert.AreEqual (FILL_ME_IN, str, ".NET will convert the value into a string, but you still have to do the math.");
+			Assert.AreEqual ("The square root of 9 is 3", str, ".NET will convert the value into a string, but you still have to do the math.");
 		}
 
 		[Test]
 		public void YouCanGetASubstringFromAString ()
 		{
 			var str = "Bacon, lettuce and tomato";
-			Assert.AreEqual (FILL_ME_IN, str.Substring (19), "In one version of this overloaded method, you only need to specify where to begin.");
-			Assert.AreEqual (FILL_ME_IN, str.Substring (7, 3), "In the other version, you also specify how far to go.");
+			Assert.AreEqual (" ", str.Substring (19), "In one version of this overloaded method, you only need to specify where to begin.");
+			Assert.AreEqual ("let", str.Substring (7, 3), "In the other version, you also specify how far to go.");
 		}
 
 		[Test]
@@ -205,7 +205,7 @@ broken line";
 		{
 			var str = "Bacon, lettuce and tomato";
 			// Remember, because we are dealing with characters, use single quotes to surround your choice.
-			Assert.AreEqual (FILL_ME_IN, str [5], "0-based arrays are sometimes confusing.. do you count the 0 or not?");
+			Assert.AreEqual (",", str [5], "0-based arrays are sometimes confusing.. do you count the 0 or not?");
 		}
 
 		[Test]
@@ -213,7 +213,7 @@ broken line";
 		{
 			Assert.AreEqual (97, 'a');
 			Assert.AreEqual (98, 'b');
-			Assert.AreEqual (FILL_ME_IN, 'b' == ('a' + 1), "You can thank your Algebra teacher later..");
+			Assert.AreEqual (98, 'b' == ('a' + 1), "You can thank your Algebra teacher later..");
 		}
 
 		[Test]
@@ -221,7 +221,7 @@ broken line";
 		{
 			var strArray1 = new[] { "alpha", "beta", "gamma" };
 			var strArray2 = new[] { "alpha", "beta", "gamma" };
-			Assert.AreEqual (FILL_ME_IN, strArray2, "If only there another call other than Assert, but just for Collections...");
+			Assert.AreEqual (strArray1, strArray2, "If only there another call other than Assert, but just for Collections...");
 		}
 
 		[Test]
@@ -230,7 +230,7 @@ broken line";
 			var str = "Sausage Egg Cheese";
 			string[] words = str.Split ();
 			// Note that we're using a different
-			CollectionAssert.AreEqual (new[] { FILL_ME_IN }, words, "Identify all the elements in the 'words' string array based on the 'str' string.  And hurry.. I'm getting hungry.");
+			CollectionAssert.AreEqual (new[] { "Sausage","Egg","Cheese" }, words, "Identify all the elements in the 'words' string array based on the 'str' string.  And hurry.. I'm getting hungry.");
 		}
 
 		[Test]
@@ -238,16 +238,18 @@ broken line";
 		{
 			var str = "Peter:Flopsy:Mopsy:Cottontail";
 			string[] words = str.Split (':');
-			CollectionAssert.AreEqual (new[] { FILL_ME_IN }, words, "I just had to find a way to split hares.");
+			CollectionAssert.AreEqual (new[] { "Peter","Flopsy","Mopsy","Cottontail" }, words, "I just had to find a way to split hares.");
 		}
 
+		/* Continue here */
+		
 		[Test]
 		public void StringsCanBeSplitUsingRegularExpressions ()
 		{
 			var str = "the:rain:in:spain";
 			var regex = new System.Text.RegularExpressions.Regex (":");
 			string[] words = regex.Split (str);
-			CollectionAssert.AreEqual (new[] { FILL_ME_IN }, words, "The way Eliza Doolittle first spoke in 'My Fair Lady' would break anyone's Karma.");
+			CollectionAssert.AreEqual (new[] { "the","rain","in","spain" }, words, "The way Eliza Doolittle first spoke in 'My Fair Lady' would break anyone's Karma.");
 
 			//A full treatment of regular expressions is beyond the scope
 			//of this tutorial. The book "Mastering Regular Expressions"
@@ -260,12 +262,12 @@ broken line";
 		{
 			var str = "";
 			// Below are 6 checks for an empty string.
-			Assert.IsTrue (str.Equals (""));                  // first
-			Assert.IsTrue (string.Equals (str, ""));          // second
-			Assert.IsTrue (str == "");                       // third
-			Assert.IsTrue (string.IsNullOrWhiteSpace (str));  // fourth (introduced in .NET 4.0)
-			Assert.IsTrue (string.IsNullOrEmpty (str));       // fifth
-			Assert.IsTrue (str.Length == 0);                 // sixth
+			Assert.IsTrue (str.Equals (""));                  	// first
+			Assert.IsTrue (string.Equals (str, ""));          	// second
+			Assert.IsTrue (str == "");                       	// third
+			Assert.IsTrue (string.IsNullOrWhiteSpace (str));  	// fourth (introduced in .NET 4.0)
+			Assert.IsTrue (string.IsNullOrEmpty (str));       	// fifth
+			Assert.IsTrue (str.Length == 0);                 	// sixth
 			// These are listed in order of performance, from worst to best, i.e., == is preferred.
 			// If you had FxCop installed, it would warn you of the performance
 			// hit using the other implementations.
@@ -273,9 +275,11 @@ broken line";
 
 			// Maybe there's a better way of sharing this information, but just add True
 			// below after reading this.
-			Assert.AreEqual (true, FILL_ME_IN, "Sometimes you need to take time and stop to smell the performance..");
+			Assert.AreEqual (true, true, "Sometimes you need to take time and stop to smell the performance..");
 		}
 
+		
+		/* Continue here */
 		[Test]
 		public void CaseMattersWhenComparingStrings ()
 		{
