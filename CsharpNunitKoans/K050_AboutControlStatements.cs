@@ -14,7 +14,7 @@ namespace TheKoans
 			if (true) {
 				b = true;
 			} else {
-				b = false;
+				b = false; 
 			}
 
 			Assert.AreEqual (true, b, "To b or not to b -- that really is the answer...");
