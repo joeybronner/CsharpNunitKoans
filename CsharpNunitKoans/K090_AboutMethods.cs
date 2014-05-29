@@ -16,19 +16,19 @@ namespace TheKoans
 		[Test]
 		public void ExtensionMethodsShowUpInTheCurrentClass ()
 		{
-			Assert.Equals (FILL_ME_IN, this.HelloWorld ());
+			Assert.AreEqual ("Hello!", this.HelloWorld ());
 		}
 
 		[Test]
 		public void ExtensionMethodsWithParameters ()
 		{
-			Assert.Equals (FILL_ME_IN, this.SayHello ("Cory"));
+			Assert.AreEqual ("Hello, Cory!", this.SayHello ("Cory"));
 		}
 
 		[Test]
 		public void ExtensionMethodsWithVariableParameters ()
 		{
-			Assert.Equals (FILL_ME_IN, this.MethodWithVariableArguments ("Cory", "Will", "Corey"));
+			Assert.AreEqual (new string[]{"Cory","Will","Corey"}, this.MethodWithVariableArguments ("Cory", "Will", "Corey"));
 		}
 		//Extension methods can extend any class my referencing
 		//the name of the class they are extending. For example,
@@ -36,7 +36,7 @@ namespace TheKoans
 		[Test]
 		public void ExtendingCoreClasses ()
 		{
-			Assert.Equals (FILL_ME_IN, "Cory".SayHi ());
+			Assert.AreEqual ("Hi, Cory", "Cory".SayHi ());
 		}
 		//Of course, any of the parameter things you can do with
 		//extension methods you can also do with local methods
@@ -48,14 +48,14 @@ namespace TheKoans
 		[Test]
 		public void LocalMethodsWithVariableParams ()
 		{
-			Assert.Equals (FILL_ME_IN, this.LocalMethodWithVariableParameters ("Cory", "Will", "Corey"));
+			Assert.AreEqual (new string[]{"Cory","Will","Corey"}, this.LocalMethodWithVariableParameters ("Cory", "Will", "Corey"));
 		}
 		//Note how we called the method by saying "this.LocalMethodWithVariableParameters"
 		//That isn't necessary for local methods
 		[Test]
 		public void LocalMethodsWithoutExplicitReceiver ()
 		{
-			Assert.Equals (FILL_ME_IN, LocalMethodWithVariableParameters ("Cory", "Will", "Corey"));
+			Assert.AreEqual (new string[]{"Cory","Will","Corey"}, LocalMethodWithVariableParameters ("Cory", "Will", "Corey"));
 		}
 		//But it is required for Extension Methods, since it needs
 		//an instance variable. So this wouldn't work, giving a
@@ -96,7 +96,7 @@ namespace TheKoans
 		[Test]
 		public void CallingStaticMethodsWithoutAnInstance ()
 		{
-			Assert.Equals (FILL_ME_IN, InnerSecret.Key ());
+			Assert.AreEqual ("Key", InnerSecret.Key ());
 		}
 		//In fact, you can't call it on an instance variable
 		//of the object. So this wouldn't compile:
@@ -106,7 +106,7 @@ namespace TheKoans
 		public void CallingPublicMethodsOnAnInstance ()
 		{
 			InnerSecret secret = new InnerSecret ();
-			Assert.Equals (FILL_ME_IN, secret.Secret ());
+			Assert.AreEqual ("Secret", secret.Secret ());
 		}
 		//Protected methods can only be called by a subclass
 		//We're going to call the public method called
@@ -116,7 +116,7 @@ namespace TheKoans
 		public void CallingProtectedMethodsOnAnInstance ()
 		{
 			StateSecret secret = new StateSecret ();
-			Assert.Equals (FILL_ME_IN, secret.InformationLeak ());
+			Assert.AreEqual ("This is secret", secret.InformationLeak ());
 		}
 		//But, we can't call the private methods of InnerSecret
 		//either through an instance, or through a subclass. It
@@ -131,7 +131,7 @@ namespace TheKoans
 			string superSecretMessage = secret.GetType ()
                 .GetMethod ("SooperSeekrit", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
                 .Invoke (secret, null) as string;
-			Assert.Equals (FILL_ME_IN, superSecretMessage);
+			Assert.AreEqual ("No one will find me!", superSecretMessage);
 		}
 		//Up till now we've had explicit return types. It's also
 		//possible to create methods which dynamically shift
@@ -145,9 +145,9 @@ namespace TheKoans
 		[Test]
 		public void CallingGenericMethods ()
 		{
-			Assert.Equals (typeof(FILL_ME_IN), GiveMeBack<int> (1).GetType ());
+			Assert.AreEqual (typeof(int), GiveMeBack<int> (1).GetType ());
 
-			Assert.Equals (FILL_ME_IN, GiveMeBack<string> ("Hi!"));
+			Assert.AreEqual ("Hi!", GiveMeBack<string> ("Hi!"));
 		}
 	}
 }
