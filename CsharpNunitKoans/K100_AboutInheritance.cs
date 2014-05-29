@@ -55,27 +55,27 @@ namespace TheKoans
 		[Test]
 		public void SubclassesHaveTheParentAsAnAncestor ()
 		{
-			Assert.IsTrue (typeof(FILL_ME_IN).IsAssignableFrom (typeof(Chihuahua)));
+			Assert.IsTrue (typeof(Dog).IsAssignableFrom (typeof(Chihuahua)));
 		}
 
 		[Test]
 		public void AllClassesUltimatelyInheritFromAnObject ()
 		{
-			Assert.IsTrue (typeof(FILL_ME_IN).IsAssignableFrom (typeof(Chihuahua)));
+			Assert.IsTrue (typeof(Dog).IsAssignableFrom (typeof(Chihuahua)));
 		}
 
 		[Test]
 		public void SubclassesInheritBehaviorFromParentClass ()
 		{
 			var chico = new Chihuahua ("Chico");
-			Assert.Equals (FILL_ME_IN, chico.Name);
+			Assert.AreEqual ("Chico", chico.Name);
 		}
 
 		[Test]
 		public void SubclassesAddNewBehavior ()
 		{
 			var chico = new Chihuahua ("Chico");
-			Assert.Equals (FILL_ME_IN, chico.Wag ());
+			Assert.AreEqual ("Happy", chico.Wag ());
 
 			//We can search the public methods of an object 
 			//instance like this:
@@ -91,16 +91,16 @@ namespace TheKoans
 		public void SubclassesCanModifyExistingBehavior ()
 		{
 			var chico = new Chihuahua ("Chico");
-			Assert.Equals (FILL_ME_IN, chico.Bark ());
+			Assert.AreEqual ("yip", chico.Bark ());
 
 			//Note that even if we cast the object back to a dog
 			//we still get the Chihuahua's behavior. It truly
 			//"is-a" Chihuahua
 			Dog dog = chico as Dog;
-			Assert.Equals (FILL_ME_IN, dog.Bark ());
+			Assert.AreEqual ("yip", dog.Bark ());
 
 			var fido = new Dog ("Fido");
-			Assert.Equals (FILL_ME_IN, fido.Bark ());
+			Assert.AreEqual ("WOOF", fido.Bark ());
 		}
 
 		public class ReallyYippyChihuahua : Chihuahua
@@ -121,7 +121,7 @@ namespace TheKoans
 		public void SubclassesCanRedefineBehaviorThatIsNotVirtual ()
 		{
 			ReallyYippyChihuahua suzie = new ReallyYippyChihuahua ("Suzie");
-			Assert.Equals (FILL_ME_IN, suzie.Wag ());
+			Assert.AreEqual ("WAG WAG WAG!!", suzie.Wag ());
 		}
 
 		[Test]
@@ -131,7 +131,7 @@ namespace TheKoans
 			//method did what we defined in our class. But what happens
 			//when we do this?
 			Chihuahua bennie = new ReallyYippyChihuahua ("Bennie");
-			Assert.Equals (FILL_ME_IN, bennie.Wag ());
+			Assert.AreEqual ("Happy", bennie.Wag ());
 
 			//That's right. The behavior of the object is dependent solely
 			//on who you are pretending to be. Unlike when you override a
@@ -155,7 +155,7 @@ namespace TheKoans
 		public void SubclassesCanInvokeParentBehaviorUsingBase ()
 		{
 			var ralph = new BullDog ("Ralph");
-			Assert.Equals (FILL_ME_IN, ralph.Bark ());
+			Assert.AreEqual ("WOOF, GROWL", ralph.Bark ());
 		}
 
 		public class GreatDane : Dog
@@ -174,7 +174,7 @@ namespace TheKoans
 		public void YouCanCallBaseEvenFromOtherMethods ()
 		{
 			var george = new BullDog ("George");
-			Assert.Equals (FILL_ME_IN, george.Bark ());
+			Assert.AreEqual ("WOOF, GROWL", george.Bark ());
 		}
 	}
 }
