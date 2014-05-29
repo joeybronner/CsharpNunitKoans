@@ -16,7 +16,7 @@ namespace TheKoans
 		public void DoubleQuotedStringsAreStrings ()
 		{
 			var str = "Hello, World";
-			Assert.AreEqual (typeof(string), str.GetType (), "What did Arial say to Serif? - Sorry, you're not my Type.");
+			Assert.AreEqual (typeof(String), str.GetType (), "What did Arial say to Serif? - Sorry, you're not my Type.");
 		}
 
 		[Test]
@@ -24,7 +24,7 @@ namespace TheKoans
 		{
 			// Note the use of single quotes below.  They're not double quotes, which are definitely used for strings.
 			var str = 'H';
-			Assert.AreEqual (typeof(string), str.GetType (), "A single tree does not a forest make.");
+			Assert.AreEqual (typeof(Char), str.GetType (), "A single tree does not a forest make.");
 		}
 
 		[Test]
@@ -63,7 +63,7 @@ broken line";
 			Assert.AreEqual (18, verbatimString.Length, "Is a newline one or two characters?");
 			//Tip: What you create for the literal string will have to 
 			//escape the newline characters.
-			var literalString = "I am a broken line";
+			var literalString = "I\r\nam a\r\nbroken line";
 			Assert.AreEqual (literalString, verbatimString, "It wouldn't be cheating if you looked down.  No, not at your feet; the method below.");
 		}
 
@@ -74,7 +74,7 @@ broken line";
 			//(\r\n for Windows, \n for Linux) you shouldn't just type in
 			//the hardcoded escape sequence. A much better way would be to
 			//use a property from the Environment class; change the line below
-			var environmentNewLine = "\n";
+			var environmentNewLine = Environment.NewLine;
             
 			//(We'll handle concatenation and better ways of that in a bit)
 			const string verbatimString = @"I
@@ -148,7 +148,7 @@ broken line";
 				strBuilder.Append ("a");
 			}
 			var str = strBuilder.ToString ();
-			Assert.AreEqual (FILL_ME_IN, str.Length, "When Charles M. Schulz drew Charlie Brown's screams (AAAARGH!) - did he ever wonder if he mispelled them?");
+			Assert.AreEqual (100, str.Length, "When Charles M. Schulz drew Charlie Brown's screams (AAAARGH!) - did he ever wonder if he mispelled them?");
 
 			//The tradeoff is that you have to create a StringBuilder object, 
 			//which is a higher overhead than a string. So the rule of thumb
@@ -160,21 +160,21 @@ broken line";
 		public void LiteralStringsInterpretsEscapeCharacters ()
 		{
 			var str = "\n";
-			Assert.AreEqual (0, str.Length, "This is just like 'the sound of one hand clapping'...");
+			Assert.AreEqual (1, str.Length, "This is just like 'the sound of one hand clapping'...");
 		}
 
 		[Test]
 		public void VerbatimStringsDoNotInterpretEscapeCharacters ()
 		{
 			var str = @"\n";
-			Assert.AreEqual (0, str.Length, "'True art selects and paraphrases, but seldom gives a verbatim translation.' - Thomas Bailey Aldrich");
+			Assert.AreEqual (2, str.Length, "'True art selects and paraphrases, but seldom gives a verbatim translation.' - Thomas Bailey Aldrich");
 		}
 
 		[Test]
 		public void VerbatimStringsStillDoNotInterpretEscapeCharacters ()
 		{
 			var str = @"\\\";
-			Assert.AreEqual (0, str.Length, "Perhaps it would help to look up the definition of verbatim, eh?");
+			Assert.AreEqual (3, str.Length, "Perhaps it would help to look up the definition of verbatim, eh?");
 		}
 
 		[Test]
@@ -196,7 +196,7 @@ broken line";
 		public void YouCanGetASubstringFromAString ()
 		{
 			var str = "Bacon, lettuce and tomato";
-			Assert.AreEqual (" ", str.Substring (19), "In one version of this overloaded method, you only need to specify where to begin.");
+			Assert.AreEqual ("tomato", str.Substring (19), "In one version of this overloaded method, you only need to specify where to begin.");
 			Assert.AreEqual ("let", str.Substring (7, 3), "In the other version, you also specify how far to go.");
 		}
 
@@ -205,7 +205,7 @@ broken line";
 		{
 			var str = "Bacon, lettuce and tomato";
 			// Remember, because we are dealing with characters, use single quotes to surround your choice.
-			Assert.AreEqual (",", str [5], "0-based arrays are sometimes confusing.. do you count the 0 or not?");
+			Assert.AreEqual (',', str [5], "0-based arrays are sometimes confusing.. do you count the 0 or not?");
 		}
 
 		[Test]
@@ -213,7 +213,7 @@ broken line";
 		{
 			Assert.AreEqual (97, 'a');
 			Assert.AreEqual (98, 'b');
-			Assert.AreEqual (98, 'b' == ('a' + 1), "You can thank your Algebra teacher later..");
+			Assert.AreEqual (true, 'b' == ('a' + 1), "You can thank your Algebra teacher later..");
 		}
 
 		[Test]
@@ -241,8 +241,6 @@ broken line";
 			CollectionAssert.AreEqual (new[] { "Peter","Flopsy","Mopsy","Cottontail" }, words, "I just had to find a way to split hares.");
 		}
 
-		/* Continue here */
-		
 		[Test]
 		public void StringsCanBeSplitUsingRegularExpressions ()
 		{
@@ -278,14 +276,12 @@ broken line";
 			Assert.AreEqual (true, true, "Sometimes you need to take time and stop to smell the performance..");
 		}
 
-		
-		/* Continue here */
 		[Test]
 		public void CaseMattersWhenComparingStrings ()
 		{
 			var strProper = "United States of America";
 			var strUpper = "UNITED STATES OF AMERICA";
-			Assert.AreEqual (FILL_ME_IN, strProper.Equals (strUpper), "It's not what you say, it's how you say it.");
+			Assert.AreEqual (false, strProper.Equals (strUpper), "It's not what you say, it's how you say it.");
 		}
 
 		[Test]
@@ -296,7 +292,7 @@ broken line";
 
 			// Strings have built-in methods to do the conversion
 			// Do a conversion on strProper to make it match strUpper
-			Assert.AreEqual (FILL_ME_IN, strUpper, "How can you argue with something in ALL CAPS? Someone took the time to press the shift key..");
+			Assert.AreEqual (strProper.ToUpper(), strUpper, "How can you argue with something in ALL CAPS? Someone took the time to press the shift key..");
 		}
 
 		[Test]
@@ -305,7 +301,7 @@ broken line";
 			var strProper = "United States of America";
 			var strUpper = "UNITED STATES OF AMERICA";
 
-			Assert.AreEqual (String.Compare (strProper, strUpper, StringComparison.OrdinalIgnoreCase), FILL_ME_IN, "Six of one, half a dozen of another.");
+			Assert.AreEqual (String.Compare (strProper, strUpper, StringComparison.OrdinalIgnoreCase), 0, "Six of one, half a dozen of another.");
 
 			// And be aware there are additional ways to compare (like .CompareTo), 
 			// but that might be better under AboutObjects?
@@ -315,7 +311,7 @@ broken line";
 		public void InsertingStrings ()
 		{
 			var str = "John Adams";
-			Assert.AreEqual (str.Insert (5, "Quincy "), FILL_ME_IN, "I wonder if they called the 6th President of the United States 'Q', like we used to call the last Bush president 'W'...");
+			Assert.AreEqual (str.Insert (5, "Quincy "), "John Quincy Adams", "I wonder if they called the 6th President of the United States 'Q', like we used to call the last Bush president 'W'...");
 
 			// Note that Insert() does not change the value of immutable string str
 			// Assert.AreEqual(str, "John Quincy Adams"); // This would not pass
@@ -327,7 +323,7 @@ broken line";
 		{
 			var str = "John Adams";
 			str = str.Insert (5, "Quincy ");
-			Assert.AreEqual (FILL_ME_IN, str, "'To furnish the means of acquiring knowledge is... the greatest benefit that can be conferred upon mankind' - John Quincy Adams");
+			Assert.AreEqual ("John Quincy Adams", str, "'To furnish the means of acquiring knowledge is... the greatest benefit that can be conferred upon mankind' - John Quincy Adams");
 		}
 
 		[Test]
@@ -335,28 +331,28 @@ broken line";
 		{
 			var str = "OholeNE";
 			str = str.Remove (1, 4);
-			Assert.AreEqual (str, FILL_ME_IN, "Channeling Tiger Woods might help you identify the resulting string from this 'hole' in 'ONE'...");
+			Assert.AreEqual (str, "ONE", "Channeling Tiger Woods might help you identify the resulting string from this 'hole' in 'ONE'...");
 		}
 
 		[Test]
 		public void UnderstandingTrim ()
 		{
 			var str = "     All that really matters    ";
-			Assert.AreEqual (str.Trim (), FILL_ME_IN, "Yes, they're simple exercises. But after learning multiple programming languages, you almost have to double check to make sure they do what you expect.");
+			Assert.AreEqual (str.Trim (), "All that really matters", "Yes, they're simple exercises. But after learning multiple programming languages, you almost have to double check to make sure they do what you expect.");
 		}
 
 		[Test]
 		public void UnderstandingTrimStart ()
 		{
 			var str = "     All that really matters    ";
-			Assert.AreEqual (FILL_ME_IN, str.TrimStart (), "I find this easier to understand when seen in context of the other Trim functions.");
+			Assert.AreEqual ("All that really matters    ", str.TrimStart (), "I find this easier to understand when seen in context of the other Trim functions.");
 		}
 
 		[Test]
 		public void UnderstandingTrimEnd ()
 		{
 			var str = "     All that really matters    ";
-			Assert.AreEqual (FILL_ME_IN, str.TrimEnd (), "I think Dan Brown did this to a lot of his books - build the suspense, add depth to the characters and the plot, then everything-is-resolved-quickly-in-a-few-pages-thend");
+			Assert.AreEqual ("     All that really matters", str.TrimEnd (), "I think Dan Brown did this to a lot of his books - build the suspense, add depth to the characters and the plot, then everything-is-resolved-quickly-in-a-few-pages-thend");
 		}
 		// End RJG Adding Yet More
 	}
